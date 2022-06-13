@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {HTTP_PASS, HTTP_USER} from './.env';
-import {LeoView} from './components';
+import {LoadingWebView} from './components';
 import {Credentials} from './http-auth';
 
 const CREDENTIALS: Credentials = {
@@ -15,7 +15,7 @@ const App = () => {
       style={{
         flex: 1,
       }}>
-      <LeoView credentials={CREDENTIALS} />
+      <LoadingWebView credentials={CREDENTIALS} />
     </SafeAreaView>
   );
 };

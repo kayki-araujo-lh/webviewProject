@@ -6,19 +6,21 @@ import {WebViewNavigationEvent} from 'react-native-webview/lib/WebViewTypes';
 import {buildHeader, Credentials} from '../../http-auth';
 import {LoadingScreen} from './LoadingScreen';
 
-export type LeoViewProps = {
+export type LoadingWebViewProps = {
   credentials: Credentials;
   style?: StyleProp<ViewStyle>;
 };
 
-export const LeoView: FC<LeoViewProps> = ({credentials, style}) => {
+export const LoadingWebView: FC<LoadingWebViewProps> = ({
+  credentials,
+  style,
+}) => {
   const headers = buildHeader(credentials);
 
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState(HTTP_URL);
 
-  const handleStart: (event: WebViewNavigationEvent) => void = event => {
-    setUrl(event.nativeEvent.url);
+  const handleStart = (event: WebViewNavigationEvent) => {
     setIsLoading(true);
   };
   return (
