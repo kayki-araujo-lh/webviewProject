@@ -17,7 +17,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = () => (
       bottom: 0,
       left: 0,
       justifyContent: 'center',
-      backgroundColor: '#00502f',
+      backgroundColor: 'white',
     }}>
     <View
       style={{
@@ -28,12 +28,5 @@ export const LoadingScreen: FC<LoadingScreenProps> = () => (
       {/* Seria uma boa ideia dexar os valores abaico responsivo */}
       <LogoSvg width={250} height={250} />
     </View>
-    <ActivityIndicator
-      color="#fff200"
-      size={50 /* Esse valor também */}
-      style={{
-        flex: 1,
-      }}
-    />
   </View>
 );
