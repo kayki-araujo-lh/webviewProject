@@ -1,6 +1,6 @@
 import {HTTP_URL} from '../../.env';
-import React, {FC, useState} from 'react';
-import {StyleProp, View, ViewStyle} from 'react-native';
+import React, {FC, useRef, useState} from 'react';
+import {BackHandler, StyleProp, View, ViewStyle} from 'react-native';
 import WebView from 'react-native-webview';
 import {WebViewNavigationEvent} from 'react-native-webview/lib/WebViewTypes';
 import {buildHeader, Credentials} from '../../http-auth';
@@ -16,13 +16,19 @@ export const LoadingWebView: FC<LoadingWebViewProps> = ({
   style,
 }) => {
   const headers = buildHeader(credentials);
-
+  const WebViewRef = useRef<WebView>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState(HTTP_URL);
-
   const handleStart = (event: WebViewNavigationEvent) => {
     setIsLoading(true);
   };
+
+  const goBack = (): boolean | null | undefined => {
+    WebViewRef.current?.goBack();
+    return true;
+  };
+
+  BackHandler.addEventListener('hardwareBackPress', goBack);
   return (
     <View
       style={
@@ -31,6 +37,7 @@ export const LoadingWebView: FC<LoadingWebViewProps> = ({
         }
       }>
       <WebView
+        ref={WebViewRef}
         javaScriptEnabled={true}
         domStorageEnabled={true}
         source={{
