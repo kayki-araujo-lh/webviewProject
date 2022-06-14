@@ -7,18 +7,20 @@ import {LoadingScreen} from './LoadingScreen';
 
 export type LoadingWebViewProps = {
   credentials: Credentials;
+  url?: string;
   style?: StyleProp<ViewStyle>;
 };
 
 export const LoadingWebView: FC<LoadingWebViewProps> = ({
   credentials,
   style,
+  url: initialURL,
 }) => {
   const headers = buildHeader(credentials);
 
   const WebViewRef = useRef<WebView>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [url] = useState(HTTP_URL);
+  const [url] = useState(initialURL ?? HTTP_URL);
 
   const goBack = (): boolean | null | undefined => {
     WebViewRef.current?.goBack();
