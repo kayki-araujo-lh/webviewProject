@@ -1,6 +1,6 @@
 import {View, ActivityIndicator} from 'react-native';
 import React, {FC} from 'react';
-import LogoSvg from '../../assets/images/logo.svg';
+import ENV from '../../.env';
 export type LoadingScreenProps = {};
 
 export const LoadingScreen: FC<LoadingScreenProps> = () => (
@@ -25,8 +25,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = () => (
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      {/* Seria uma boa ideia dexar os valores abaico responsivo */}
-      <LogoSvg width={250} height={250} />
+      <ENV.splashLogo width={250} height={250} />
     </View>
   </View>
 );

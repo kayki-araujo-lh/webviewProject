@@ -1,27 +1,43 @@
 import React from 'react';
-import {HTTP_URL} from '../../.env';
-import {createWebViewTabs, createWebViewTabsConfig} from './createWebViewTabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {FC} from 'react';
+import ENV from '../../.env';
+import {LoadingWebView} from '../LoadingWebView';
 
-import HomeIcon from '../../assets/icons/home.svg';
-import UserIcon from '../../assets/icons/user.svg';
-import CartIcon from '../../assets/icons/cart.svg';
+const Tab = createBottomTabNavigator();
 
-const tabs: createWebViewTabsConfig = [
-  {
-    name: 'Home',
-    url: `${HTTP_URL}`,
-    icon: HomeIcon,
-  },
-  {
-    name: 'Login',
-    url: `${HTTP_URL}/login`,
-    icon: UserIcon,
-  },
-  {
-    name: 'Carrinho',
-    url: `${HTTP_URL}/cart`,
-    icon: CartIcon,
-  },
-];
+type TabRoute = {
+  name: string;
+  url: string;
+  icon: FC;
+};
 
-export const WebViewTabs = createWebViewTabs(tabs);
+export type TabsConfig = {
+  initialRoute: string;
+  labelActiveColor: string;
+  labelInactiveColor: string;
+  routes: TabRoute[];
+};
+
+const tabsConfig = ENV.tabsConfig;
+export const WebViewTabs: FC = () =>
+  tabsConfig ? (
+    <Tab.Navigator initialRouteName={tabsConfig.initialRoute}>
+      {tabsConfig.routes.map(route => (
+        <Tab.Screen
+          key={route.name}
+          name={route.name}
+          options={{
+            headerShown: false,
+            unmountOnBlur: true,
+            tabBarIcon: route.icon,
+            tabBarInactiveTintColor: tabsConfig.labelInactiveColor,
+            tabBarActiveTintColor: tabsConfig.labelActiveColor,
+          }}>
+          {() => <LoadingWebView url={route.url} />}
+        </Tab.Screen>
+      ))}
+    </Tab.Navigator>
+  ) : (
+    <></>
+  );

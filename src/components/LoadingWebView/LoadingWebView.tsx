@@ -1,26 +1,24 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {BackHandler, StyleProp, View, ViewStyle} from 'react-native';
 import WebView from 'react-native-webview';
-import {HTTP_URL} from '../../.env';
+import ENV from '../../.env';
 import {buildHeader, Credentials} from '../../http-auth';
 import {LoadingScreen} from './LoadingScreen';
 
 export type LoadingWebViewProps = {
-  credentials: Credentials;
   url?: string;
   style?: StyleProp<ViewStyle>;
 };
 
 export const LoadingWebView: FC<LoadingWebViewProps> = ({
-  credentials,
   style,
   url: initialURL,
 }) => {
-  const headers = buildHeader(credentials);
+  const headers = buildHeader(ENV.credentials);
 
   const WebViewRef = useRef<WebView>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [url, setUrl] = useState(initialURL ?? HTTP_URL);
+  const [url, setUrl] = useState(initialURL ?? ENV.url);
 
   const goBack = (): boolean | null | undefined => {
     WebViewRef.current?.goBack();
@@ -43,12 +41,15 @@ export const LoadingWebView: FC<LoadingWebViewProps> = ({
           uri: url,
           headers,
         }}
+        onError={console.log}
         onShouldStartLoadWithRequest={e => {
           setUrl(e.url);
           return false;
         }}
         onLoadStart={() => setIsLoading(true)}
-        onLoad={() => setIsLoading(false)}
+        onLoad={() => {
+          setIsLoading(false);
+        }}
       />
       {isLoading && <LoadingScreen />}
     </View>

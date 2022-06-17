@@ -1,19 +1,24 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {WebViewTabs} from './components';
+import {SafeAreaView, StyleProp, ViewStyle} from 'react-native';
+import ENV from './.env';
+import {LoadingWebView, WebViewTabs} from './components';
 
-const App = () => {
-  return (
+const container: StyleProp<ViewStyle> = {
+  flex: 1,
+};
+
+const App = () =>
+  ENV.showTabs ? (
     <NavigationContainer>
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}>
+      <SafeAreaView style={container}>
         <WebViewTabs />
       </SafeAreaView>
     </NavigationContainer>
+  ) : (
+    <SafeAreaView style={container}>
+      <LoadingWebView />
+    </SafeAreaView>
   );
-};
 
 export default App;
