@@ -1,4 +1,4 @@
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {BackHandler, StyleProp, View, ViewStyle} from 'react-native';
 import WebView from 'react-native-webview';
 import {HTTP_URL} from '../../.env';
@@ -20,7 +20,7 @@ export const LoadingWebView: FC<LoadingWebViewProps> = ({
 
   const WebViewRef = useRef<WebView>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [url] = useState(initialURL ?? HTTP_URL);
+  const [url, setUrl] = useState(initialURL ?? HTTP_URL);
 
   const goBack = (): boolean | null | undefined => {
     WebViewRef.current?.goBack();
@@ -42,6 +42,10 @@ export const LoadingWebView: FC<LoadingWebViewProps> = ({
         source={{
           uri: url,
           headers,
+        }}
+        onShouldStartLoadWithRequest={e => {
+          setUrl(e.url);
+          return false;
         }}
         onLoadStart={() => setIsLoading(true)}
         onLoad={() => setIsLoading(false)}
