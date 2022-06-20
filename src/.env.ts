@@ -17,31 +17,31 @@ type Env = {
 };
 
 const ENV: Env = {
-  url: 'https://www.webcontinental.com.br/',
+  url: '<url>',
   credentials: {
-    user: '',
-    pass: '',
+    user: '<user>',
+    pass: '<pass>',
   },
   splashLogo: SplashLogo,
   showTabs: false,
   tabsConfig: {
     initialRoute: 'Home',
-    labelActiveColor: '#0098ff',
-    labelInactiveColor: '#676666',
+    labelActiveColor: '#00502f',
+    labelInactiveColor: '#80a898',
     routes: [
       {
         name: 'Login',
-        url: 'https://www.webcontinental.com.br/login',
+        url: '<url>login',
         icon: UserIcon,
       },
       {
         name: 'Home',
-        url: 'https://www.webcontinental.com.br/',
+        url: '<url>',
         icon: HomeIcon,
       },
       {
         name: 'Carrinho',
-        url: 'https://www.webcontinental.com.br/cart',
+        url: '<url>cart',
         icon: CartIcon,
       },
     ],

@@ -25,7 +25,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = () => (
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <ENV.splashLogo width={250} height={250} />
+      <ENV.splashLogo width={175} height={175} />
     </View>
   </View>
 );
