@@ -12,6 +12,7 @@ type Env = {
   url: string;
   credentials: Credentials;
   splashLogo: React.FC<SvgProps>;
+  mainColor: string;
   showTabs: boolean;
   tabsConfig: TabsConfig;
 };
@@ -23,7 +24,8 @@ const ENV: Env = {
     pass: '',
   },
   splashLogo: SplashLogo,
-  showTabs: false,
+  mainColor: '#0098ff',
+  showTabs: true,
   tabsConfig: {
     initialRoute: 'Home',
     labelActiveColor: '#0098ff',
