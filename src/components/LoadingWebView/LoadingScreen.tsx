@@ -7,13 +7,14 @@ enum LoadingType {
   Indicator,
 }
 
-const getLoadingType = (() => {
-  const generator = (function* () {
-    yield LoadingType.Splash;
-    while (true) yield LoadingType.Indicator;
-  })();
-  return () => generator.next().value;
-})();
+const loadingType = class {
+  private static _type = LoadingType.Splash;
+  public static get = () => {
+    const type = this._type;
+    if (this._type === LoadingType.Splash) this._type = LoadingType.Indicator;
+    return type;
+  };
+};
 
 export const LoadingScreen: FC = () => (
   <View
@@ -43,7 +44,7 @@ export const LoadingScreen: FC = () => (
           [LoadingType.Indicator]: (
             <ActivityIndicator color={ENV.mainColor} size={30} />
           ),
-        }[getLoadingType()]
+        }[loadingType.get()]
       }
     </View>
   </View>
