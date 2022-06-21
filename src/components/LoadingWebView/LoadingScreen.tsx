@@ -1,9 +1,21 @@
-import {View, ActivityIndicator} from 'react-native';
 import React, {FC} from 'react';
+import {ActivityIndicator, View} from 'react-native';
 import ENV from '../../.env';
-export type LoadingScreenProps = {};
 
-export const LoadingScreen: FC<LoadingScreenProps> = () => (
+enum LoadingType {
+  Splash,
+  Indicator,
+}
+
+const getLoadingType = (() => {
+  const generator = (function* () {
+    yield LoadingType.Splash;
+    while (true) yield LoadingType.Indicator;
+  })();
+  return () => generator.next().value;
+})();
+
+export const LoadingScreen: FC = () => (
   <View
     style={{
       flex: 1,
@@ -25,7 +37,14 @@ export const LoadingScreen: FC<LoadingScreenProps> = () => (
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <ENV.splashLogo width={250} height={250} />
+      {
+        {
+          [LoadingType.Splash]: <ENV.splashLogo width={250} height={250} />,
+          [LoadingType.Indicator]: (
+            <ActivityIndicator color={ENV.mainColor} size={30} />
+          ),
+        }[getLoadingType()]
+      }
     </View>
   </View>
 );
