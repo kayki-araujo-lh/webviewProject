@@ -2,7 +2,7 @@ import React, {FC, useRef, useState} from 'react';
 import {BackHandler, StyleProp, View, ViewStyle} from 'react-native';
 import WebView from 'react-native-webview';
 import ENV from '../../.env';
-import {buildHeader} from '../../http-auth';
+import {buildHeader} from '../../utils';
 import {LoadingScreen} from './LoadingScreen';
 
 export type LoadingWebViewProps = {

@@ -1,6 +1,6 @@
 import {SvgProps} from 'react-native-svg';
 
-import {Credentials} from './http-auth';
+import {Credentials} from './utils';
 import {TabsConfig} from './components';
 
 import SplashLogo from './assets/images/logo.svg';

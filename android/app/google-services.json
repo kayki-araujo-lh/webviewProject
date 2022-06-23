@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "601332735054",
+    "project_id": "webcontinental-991b4",
+    "storage_bucket": "webcontinental-991b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601332735054:android:f0d6c1a039b4bd1aeef71f",
+        "android_client_info": {
+          "package_name": "com.webviewproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601332735054-pdf6jac8c0nm311ds3dg322mr7c42q4h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webviewproject",
+            "certificate_hash": "3bb1e55979a387d75ad62f7047dd1889614c0f89"
+          }
+        },
+        {
+          "client_id": "601332735054-dm6kvu0gh7b6mfg0cd3pd4leuigjh1br.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAdpwUGSlldEYLBdF-SO062Sggza_JMGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601332735054-dm6kvu0gh7b6mfg0cd3pd4leuigjh1br.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
